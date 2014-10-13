@@ -1,0 +1,34 @@
+services:
+    espend_ide_collector:
+        class: espend\Ide\DataCollector\DataCollector
+        arguments: [@espend_ide_collector.path_resolver]
+
+    espend_ide_client:
+        class: espend\Ide\Client\IdeCurlClient
+        arguments: [%espend_ide.endpoint%]
+
+    espend_ide_collector.path_resolver:
+        class: espend\Ide\DataCollector\Path\Symfony\FilesystemResolver
+        public: false
+        arguments: [@filesystem, "%kernel.root_dir%/.."]
+
+    espend_ide_collector.doctrine:
+        class: espend\Ide\DataCollector\Collector\Doctrine\DoctrineDataCollector
+        arguments: [@doctrine]
+        public: false
+        tags:
+            - { name: ide_data_collector }
+
+    espend_ide_collector.router:
+        class: espend\Ide\DataCollector\Collector\Router\SymfonyRoutesCollector
+        arguments: [@router, @controller_name_converter]
+        public: false
+        tags:
+            - { name: ide_data_collector }
+
+    espend_ide_collector.twig:
+        class: espend\Ide\DataCollector\Collector\Twig\TwigDataCollector
+        arguments: [@twig.loader, @kernel]
+        public: false
+        tags:
+            - { name: ide_data_collector }

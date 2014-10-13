@@ -1,0 +1,19 @@
+{
+    "name": "espend/ide-tools",
+    "description": "Some IDE / PhpStorm tools",
+    "keywords": ["IDE", "PhpStorm", "Symfony", "Symfony2"],
+    "homepage": "http://espend.de",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Espendiller",
+            "email": "daniel@espendiller.net",
+            "homepage": "http://espend.de"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "espend\\": "src/"
+        }
+    }
+}
